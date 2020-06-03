@@ -10,7 +10,7 @@ i   */
     return gapi.auth2.getAuthInstance()
         .signIn({scope: "https://www.googleapis.com/auth/youtube.force-ssl"})
         .then(
-	      function() {console.log(response);},
+	      function(response) {console.log(response);},
 
               function(err) { console.error("Error signing in", err); });
   }
