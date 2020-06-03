@@ -36,7 +36,24 @@ i   */
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "778551256645-n49usuiedqdothjcf64d473nlhh0iqpo.apps.googleusercontent.com"});
   });
+  function search() {
+    return gapi.client.youtube.search.list({
+      "part": [
+        "snippet"
+      ],
+      "maxResults": 25,
+      "q": "sanuka"
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute()">execute</button>
+<button onClick="search()">search</button>
+
 
