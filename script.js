@@ -1,6 +1,3 @@
-<script src="https://apis.google.com/js/api.js"></script>
-
-
 function authenticate() {
     return gapi.auth2.getAuthInstance()
         .signIn({scope: "https://www.googleapis.com/auth/youtube.force-ssl"})
