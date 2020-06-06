@@ -45,7 +45,7 @@ function authenticate() {
         .then(function(response) {
                 for(let i=0;i<items.length();i++){
                 	console.log(response.result.items[i].snippet.title);
-                }// Handle the results here (response.result has the parsed body).
+                };// Handle the results here (response.result has the parsed body).
                 
               },
               function(err) { console.error("Execute error", err); });
