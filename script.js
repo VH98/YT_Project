@@ -43,8 +43,10 @@ function authenticate() {
       "q": "sanuka"
     })
         .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log(response.result.items[1].snippet.title);
+                for(let i=0;i<items.length();i++){
+                	console.log(response.result.items[i].snippet.title);
+                }// Handle the results here (response.result has the parsed body).
+                
               },
               function(err) { console.error("Execute error", err); });
   }
