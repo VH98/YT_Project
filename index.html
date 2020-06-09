@@ -51,7 +51,7 @@
                 const itemArray = response.result.items;
                 for(let i=0;i<itemArray.length;i++){
                   channelTitle = itemArray[i].snippet.title;
-                  channelID = itemArray[i].channelID;
+                  channelID = itemArray[i].resourceId.channelId;
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
                   insert_value();
