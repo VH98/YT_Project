@@ -1,26 +1,67 @@
-﻿<!DOCTYPE html>
-<html>
-	<head>
-   		<title>YouTube API V3</title>
-   		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-	</head>
-	<body>
- 		<script src="https://apis.google.com/js/api.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+  
+  var script_url = "https://script.google.com/macros/s/AKfycbzW3SVLURWx8cuOgF0Fa6UPDVGcLfMLwxpn0ZjvRCB-bA6pI-M/exec";
+  
+  // Make an AJAX call to Google Script
+  function insert_value() {
+    
+   var url = script_url+"?callback=ctrlq&channelID="+channelID+"&channelTitle="+channelTitle+"&action=insert";
+  
 
-		<script src="script.js"></script>
-		
-		<button onclick="authenticate().then(loadClient)">authorize and load</button>
-		<button onclick="execute()">execute</button>
-		<button onClick="search()">search</button>
+    var request = jQuery.ajax({
+      crossDomain: true,
+      url: url ,
+      method: "GET",
+      dataType: "jsonp"
+    });
 
+  }
+</script>
+<script>
+  
 
- 	</body>
-</html>
-           
-
-
-
-
-
-
-
+  function authenticate() {
+    return gapi.auth2.getAuthInstance()
+        .signIn({scope: "https://www.googleapis.com/auth/youtube.readonly"})
+        .then(function() { console.log("Sign-in successful"); },
+              function(err) { console.error("Error signing in", err); });
+  }
+  function loadClient() {
+    gapi.client.setApiKey("AIzaSyBKkbJ3dtvhFXy_Ljm0Rch5pIzvk_FTz-A");
+    return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+        .then(function() { console.log("GAPI client loaded for API"); },
+              function(err) { console.error("Error loading GAPI client for API", err); });
+  }
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  var channelTitle=null;
+  var channelID=null;
+  function execute() {
+    return gapi.client.youtube.subscriptions.list({
+      "part": [
+        "id",
+        "snippet"
+      ],
+      "maxResults": 50,
+      "mine": true
+    })
+        .then(function(response) {
+                const itemArray = response.items;
+                for(let i=0;i<itemArray.length;i++){
+                  channelTitle = itemArray[i].snippet.title;
+                  channelID = itemArray[i].snippet.id;
+                  console.log("Name",channelTitle);
+                  console.log("ID",channelID);
+                  insert_value();
+                },
+                // Handle the results here (response.result has the parsed body).
+                
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+  gapi.load("client:auth2", function() {
+    gapi.auth2.init({client_id: "778551256645-n49usuiedqdothjcf64d473nlhh0iqpo.apps.googleusercontent.com"});
+  });
+</script>
+<button onclick="authenticate().then(loadClient)">authorize and load</button>
+<button onclick="execute()">execute</button>
