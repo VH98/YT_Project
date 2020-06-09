@@ -5,7 +5,7 @@
   var script_url = "https://script.google.com/macros/s/AKfycbzW3SVLURWx8cuOgF0Fa6UPDVGcLfMLwxpn0ZjvRCB-bA6pI-M/exec";
   
   // Make an AJAX call to Google Script
-  function insert_value() {
+  async function insert_value() {
     
    var url = script_url+"?callback=ctrlq&id="+channelID+"&name="+channelTitle+"&action=insert";
   
@@ -16,6 +16,8 @@
       method: "GET",
       dataType: "jsonp"
     });
+    await sleep(10000);
+    return 0;
 
   }
 
@@ -60,10 +62,8 @@
                   channelID = itemArray[i].snippet.resourceId.channelId;
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
-                  insert_value();
-                  setTimeout(function(){
-                    console.log("");
-                  },4000);
+                  insert_value().then(result=>console.log(result));
+                  
 
 
                 }
