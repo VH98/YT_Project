@@ -47,7 +47,7 @@
       "mine": true
     })
         .then(function(response) {
-                const itemArray = response.result.items[];
+                const itemArray = response.result.items;
                 for(let i=0;i<itemArray.length;i++){
                   channelTitle = itemArray[i].snippet.title;
                   channelID = itemArray[i].snippet.id;
