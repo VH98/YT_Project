@@ -28,7 +28,7 @@
               function(err) { console.error("Error signing in", err); });
   }
   function loadClient() {
-    gapi.client.setApiKey("AIzaSyBKkbJ3dtvhFXy_Ljm0Rch5pIzvk_FTz-A");
+    gapi.client.setApiKey("AIzaSyBKkbJ3d  tvhFXy_Ljm0Rch5pIzvk_FTz-A");
     return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
@@ -53,7 +53,7 @@
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
                   insert_value();
-                },
+                }
                 // Handle the results here (response.result has the parsed body).
                 
               },
