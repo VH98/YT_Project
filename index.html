@@ -47,10 +47,10 @@
       "mine": true
     })
         .then(function(response) {
-                
-                for(let i=0;i<response.result.items[].length;i++){
-                  channelTitle = response.result.items[i].snippet.title;
-                  channelID = response.result.items[i].snippet.id;
+                const itemArray = response.result.items[];
+                for(let i=0;i<itemArray.length;i++){
+                  channelTitle = itemArray[i].snippet.title;
+                  channelID = itemArray[i].snippet.id;
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
                   insert_value();
