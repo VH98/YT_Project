@@ -1,4 +1,5 @@
 <script src="https://apis.google.com/js/api.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script>
   
   var script_url = "https://script.google.com/macros/s/AKfycbzW3SVLURWx8cuOgF0Fa6UPDVGcLfMLwxpn0ZjvRCB-bA6pI-M/exec";
@@ -50,7 +51,7 @@
                 const itemArray = response.result.items;
                 for(let i=0;i<itemArray.length;i++){
                   channelTitle = itemArray[i].snippet.title;
-                  channelID = itemArray[i].snippet.id;
+                  channelID = itemArray[i].snippet.channelID;
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
                   insert_value();
