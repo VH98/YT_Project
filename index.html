@@ -53,7 +53,7 @@
       "maxResults": 50,
       "mine": true
     })
-        .then(async function(response) {
+        .then(function(response) {
                 const itemArray = response.result.items;
                 for(let i=0;i<itemArray.length;i++){
                   channelTitle = itemArray[i].snippet.title;
@@ -61,7 +61,8 @@
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
                   insert_value();
-                  await sleep(4000);
+                  setTimeout(function(){},4000);
+
 
                 }
                 // Handle the results here (response.result has the parsed body).
