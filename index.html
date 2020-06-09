@@ -48,9 +48,9 @@
     })
         .then(function(response) {
                 
-                for(let i=0;i<response.items[].length;i++){
-                  channelTitle = response.items[i].snippet.title;
-                  channelID = response.items[i].snippet.id;
+                for(let i=0;i<response.result.items[].length;i++){
+                  channelTitle = response.result.items[i].snippet.title;
+                  channelID = response.result.items[i].snippet.id;
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
                   insert_value();
