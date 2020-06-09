@@ -46,6 +46,9 @@
   var channelTitle=null;
   var channelID=null;
   
+  function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+
   function execute() {
     return gapi.client.youtube.subscriptions.list({
       "part": [
@@ -55,15 +58,15 @@
       "maxResults": 50,
       "mine": true
     })
-        .then(function(response) {
+        .then(async function(response) {
                 const itemArray = response.result.items;
                 for(let i=0;i<itemArray.length;i++){
                   channelTitle = itemArray[i].snippet.title;
                   channelID = itemArray[i].snippet.resourceId.channelId;
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
-                  insert_value().then((result)=>{console.log(result)});
-                  
+                  insert_value();
+                  await sleep(5000);                  
 
 
                 }
