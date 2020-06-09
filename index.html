@@ -5,7 +5,7 @@
   var script_url = "https://script.google.com/macros/s/AKfycbzW3SVLURWx8cuOgF0Fa6UPDVGcLfMLwxpn0ZjvRCB-bA6pI-M/exec";
   
   // Make an AJAX call to Google Script
-  async function insert_value() {
+  function insert_value() {
     
    var url = script_url+"?callback=ctrlq&id="+channelID+"&name="+channelTitle+"&action=insert";
   
@@ -16,7 +16,6 @@
       method: "GET",
       dataType: "jsonp"
     });
-    return 1;
 
   }
 
@@ -54,16 +53,15 @@
       "maxResults": 50,
       "mine": true
     })
-        .then(function(response) {
+        .then(async function(response) {
                 const itemArray = response.result.items;
                 for(let i=0;i<itemArray.length;i++){
                   channelTitle = itemArray[i].snippet.title;
                   channelID = itemArray[i].snippet.resourceId.channelId;
-                  
-                  insert_value().then(result=>(
-                      console.log("Name : ",channelTitle);
-                      console.log("ID   : ",channelID);
-                    ));
+                  console.log("Name",channelTitle);
+                  console.log("ID",channelID);
+                  insert_value();
+                  await sleep(4000);
 
                 }
                 // Handle the results here (response.result has the parsed body).
