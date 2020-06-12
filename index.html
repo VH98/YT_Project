@@ -57,14 +57,14 @@
       "maxResults": 50,
       "mine": true
     })
-        .then(function(response) {
+        .then(async function(response) {
                 const itemArray = response.result.items;
                 for(let i=0;i<itemArray.length;i++){
                   channelTitle = itemArray[i].snippet.title;
                   channelID = itemArray[i].snippet.resourceId.channelId;
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
-                  insert_value();
+                  insert_value().then(setTimeout(function(){ console.log("done"); }, 5000));
                   
 
                 }
