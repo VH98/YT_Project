@@ -17,7 +17,7 @@
       method: "GET",
       dataType: "jsonp"
     });
-    return result;
+    
     
     
 
@@ -27,7 +27,7 @@
   
   
   console.log(e.result);
-  result=e.result;
+  this.result=e.result;
   //read_value();
   
   }
@@ -124,11 +124,11 @@ $.getJSON(url, function (json) {
                   result=null;
                   insert_value();
                   while(flag==0){
-                      if(result=="Insertion successful"){
+                      if(result==1){
                         flag=1;
-                        console.log("Insertion success for")
+                        console.log("Insertion success for" + channelTitle);
                       }else{
-                        console.log(`"Insertion fail for" + channelTitle`)
+                        console.log("Insertion fail for" + channelTitle);
                       };
                   };
                   
