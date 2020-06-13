@@ -5,6 +5,7 @@
   var script_url = "https://script.google.com/macros/s/AKfycbzW3SVLURWx8cuOgF0Fa6UPDVGcLfMLwxpn0ZjvRCB-bA6pI-M/exec";
   
   // Make an AJAX call to Google Script
+  var result=null;
   function insert_value() {
     
    var url = script_url+"?callback=ctrlq&id="+channelID+"&name="+channelTitle+"&action=insert";
@@ -16,7 +17,7 @@
       method: "GET",
       dataType: "jsonp"
     });
-    return e.result;
+    return result;
     
     
 
@@ -26,7 +27,7 @@
   
   
   console.log(e.result);
-  return e.result;
+  result=e.result;
   //read_value();
   
   }
@@ -120,9 +121,10 @@ $.getJSON(url, function (json) {
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
                   flag=0;
+                  result=null;
                   insert_value();
                   while(flag==0){
-                      if(e.result==="Insertion successful"){
+                      if(result==="Insertion successful"){
                         flag=1;
                       };
                   };
