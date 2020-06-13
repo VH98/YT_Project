@@ -142,21 +142,21 @@ $.getJSON(url, function (json) {
 </script>
 
 <script type="text/javascript">
-  var channelArray=new Array(50);
+  var chnlArray=new Array(50);
   function Channel(channelTitle,channelID){
     this.channelID=channelID;
     this.channelTitle=channelTitle;
   }
   function channelArray(){
     for(let i=0;i<50;i++){
-      channelArray[i]=new Channel(channelTitle,channelID);
+      chnlArray[i]=new Channel(channelTitle,channelID);
     }
 
   }
   function addChannels(){
     for(let i=0;i<50;i++){
-      var channelID1=channelArray[i].channelID1;
-      var channelTitle1=channelArray[i].channelTitle1;
+      var channelID1=chnlArray[i].channelID1;
+      var channelTitle1=chnlArray[i].channelTitle1;
       insert_value(channelID1,channelTitle1);
       
     }
