@@ -6,9 +6,9 @@
   
   // Make an AJAX call to Google Script
   var result=null;
-  function insert_value() {
+  function insert_value(channelTitle1,channelID1) {
     
-   var url = script_url+"?callback=ctrlq&id="+channelID+"&name="+channelTitle+"&action=insert";
+   var url = script_url+"?callback=ctrlq&id="+channelID1+"&name="+channelTitle1+"&action=insert";
   
 
     var request = jQuery.ajax({
@@ -121,17 +121,10 @@ $.getJSON(url, function (json) {
                   channelID = itemArray[i].snippet.resourceId.channelId;
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
-                  flag=0;
-                  result=null;
-                  insert_value();
-                  while(flag==0){
-                      if(this.result=="Insertion successful"){
-                        flag=1;
-                        console.log("Insertion success for" + channelTitle);
-                      }else{
-                        console.log("Insertion fail for" + channelTitle);
-                      };
-                  };
+                  channelArray();
+                  
+                  
+                  
                   
                   
                   
@@ -147,5 +140,28 @@ $.getJSON(url, function (json) {
     gapi.auth2.init({client_id: "822597338978-tsnhnguf1r517bolp2i2c0b5d51ip977.apps.googleusercontent.com"});
   });
 </script>
+
+<script type="text/javascript">
+  var channelArray=new Array(50);
+  function Channel(channelTitle,channelID){
+    this.channelID=channelID;
+    this.channelTitle=channelTitle;
+  }
+  function channelArray(){
+    for(let i=0;i<50;i++){
+      channelArray[i]=new Channel(channelTitle,channelID);
+    }
+
+  }
+  function addChannels(){
+    for(let i=0;i<50;i++){
+      var channelID1=channelArray[i].channelID1;
+      var channelTitle1=channelArray[i].channelTitle1;
+      insert_value(channelID1,channelTitle1);
+      
+    }
+  }
+</script>>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute()">execute</button>
+<button onclick="addChannels()">Add Channels</button>
