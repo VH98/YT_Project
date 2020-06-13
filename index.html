@@ -16,6 +16,7 @@
       method: "GET",
       dataType: "jsonp"
     });
+    return e.result;
     
     
 
@@ -25,6 +26,7 @@
   
   
   console.log(e.result);
+  return e.result;
   //read_value();
   
   }
@@ -98,7 +100,7 @@ $.getJSON(url, function (json) {
   // Make sure the client is loaded and sign-in is complete before calling this method.
   var channelTitle=null;
   var channelID=null;
-  
+  var flag=0;
  
 
   function execute() {
@@ -117,7 +119,13 @@ $.getJSON(url, function (json) {
                   channelID = itemArray[i].snippet.resourceId.channelId;
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
+                  flag=0;
                   insert_value();
+                  while(flag==0){
+                      if(e.result==="Insertion successful"){
+                        flag=1;
+                      };
+                  };
                   
 
                 }
