@@ -103,7 +103,7 @@ $.getJSON(url, function (json) {
   var channelTitle=null;
   var channelID=null;
   var flag=0;
-  const itemArray =null;
+  var itemArray =null;
 
   function execute() {
     return gapi.client.youtube.subscriptions.list({
@@ -158,8 +158,9 @@ $.getJSON(url, function (json) {
       channelTitle = itemArray[i].snippet.title;
       channelID = itemArray[i].snippet.resourceId.channelId;
       await insert_value();
+    }
   }
-</script>>
+</script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute()">execute</button>
 <button onclick="addChannels()">Add Channels</button>
