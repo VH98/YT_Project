@@ -117,7 +117,7 @@ $.getJSON(url, function (json) {
                   channelID = itemArray[i].snippet.resourceId.channelId;
                   console.log("Name",channelTitle);
                   console.log("ID",channelID);
-                  insert_value().then(function() {setTimeout({ console.log("done"); }, 5000)});
+                  insert_value();
                   
 
                 }
