@@ -6,9 +6,9 @@
   
   // Make an AJAX call to Google Script
   var result=null;
-  function insert_value(channelTitle1,channelID1) {
+  function insert_value() {
     
-   var url = script_url+"?callback=ctrlq&id="+this.channelID1+"&name="+this.channelTitle1+"&action=insert";
+   var url = script_url+"?callback=ctrlq&id="+channelID+"&name="+channelTitle+"&action=insert";
   
 
     var request = jQuery.ajax({
@@ -103,7 +103,7 @@ $.getJSON(url, function (json) {
   var channelTitle=null;
   var channelID=null;
   var flag=0;
- 
+  const itemArray;
 
   function execute() {
     return gapi.client.youtube.subscriptions.list({
@@ -115,7 +115,7 @@ $.getJSON(url, function (json) {
       "mine": true
     })
         .then(function(response) {
-                const itemArray = response.result.items;
+                itemArray = response.result.items;
                 for(let i=0;i<itemArray.length;i++){
                   channelTitle = itemArray[i].snippet.title;
                   channelID = itemArray[i].snippet.resourceId.channelId;
@@ -153,13 +153,11 @@ $.getJSON(url, function (json) {
     }
 
   }
-  function addChannels(){
-    for(let i=0;i<50;i++){
-      var channelID1=chnlArray[i].channelID1;
-      var channelTitle1=chnlArray[i].channelTitle1;
-      insert_value(channelID1,channelTitle1);
-      
-    }
+  async function addChannels(){
+    for(let i=0;i<itemArray.length;i++){
+      channelTitle = itemArray[i].snippet.title;
+      channelID = itemArray[i].snippet.resourceId.channelId;
+      await insert_value();
   }
 </script>>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
