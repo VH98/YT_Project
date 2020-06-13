@@ -27,7 +27,7 @@
   
   
   console.log(e);
-  this.result=e.result;
+  //this.result=e.result;
 
   //read_value();
   
@@ -123,8 +123,8 @@ $.getJSON(url, function (json) {
                   console.log("ID",channelID);
                   flag=0;
                   result=null;
-                  insert_value();
-                  while(flag==0){
+                  insert_value().then(function(){
+                    while(flag==0){
                       if(result==1){
                         flag=1;
                         console.log("Insertion success for" + channelTitle);
@@ -132,6 +132,8 @@ $.getJSON(url, function (json) {
                         console.log("Insertion fail for" + channelTitle);
                       };
                   };
+                  })
+                  
                   
 
                 }
