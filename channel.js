@@ -4,7 +4,6 @@ function Channel(channelTitle, channelID) {
   this.channelID = channelID;
   this.channelTitle = channelTitle;
 }
-
 function channelArray() {
   for (let i = 0; i < 50; i++) {
     chnlArray[i] = new Channel(channelTitle, channelID);
