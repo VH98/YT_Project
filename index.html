@@ -6,12 +6,12 @@
   
   // Make an AJAX call to Google Script
   var result=null;
-  function insert_value() {
+  async function insert_value() {
     
    var url = script_url+"?callback=ctrlq&id="+channelID+"&name="+channelTitle+"&action=insert";
   
 
-    var request = jQuery.ajax({
+    await var request = jQuery.ajax({
       crossDomain: true,
       url: url ,
       method: "GET",
@@ -23,10 +23,10 @@
 
   }
 
- function ctrlq(e) {
+ async function ctrlq(e) {
   
   
-  console.log(e.result);
+  await console.log(e.result);
   this.result=e.result;
 
   //read_value();
