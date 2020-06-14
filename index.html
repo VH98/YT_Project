@@ -6,12 +6,17 @@
   
   // Make an AJAX call to Google Script
   var result=null;
-  async function insert_value() {
+  
+  function waiting(){
+    setTimeout(function(){ console.log("Waiting to insert "+channelTitle); }, 4000);
+  }
+  
+  function insert_value() {
     
    var url = script_url+"?callback=ctrlq&id="+channelID+"&name="+channelTitle+"&action=insert";
   
 
-    await var request = jQuery.ajax({
+    var request = jQuery.ajax({
       crossDomain: true,
       url: url ,
       method: "GET",
@@ -23,10 +28,10 @@
 
   }
 
- async function ctrlq(e) {
+ function ctrlq(e) {
   
   
-  await console.log(e.result);
+  console.log(e.result);
   this.result=e.result;
 
   //read_value();
@@ -158,6 +163,7 @@ $.getJSON(url, function (json) {
       channelTitle = itemArray[i].snippet.title;
       channelID = itemArray[i].snippet.resourceId.channelId;
       await insert_value();
+      await waiting();
     }
   }
 </script>
